@@ -192,6 +192,12 @@ pre code {
   box-shadow: none;
 }
 
+code em {
+	color: #930;
+	background: #fff8e0;
+	font-style: normal;
+}
+
 blockquote {
   color: #666;
   margin-bottom: 20px;
@@ -429,3 +435,38 @@ Small Device Styles
   }
 
 }
+
+
+
+/*******************************************************************************
+Site-specific styles
+*******************************************************************************/
+
+.example {
+	position: relative;
+	box-shadow: 0 0 0 #ffffff;
+}
+
+.example img {
+	box-shadow: 0 0 0 #ffffff;
+	border-style: none;
+	display: inline-block;
+	max-width: 100%;
+}
+
+.example-2 {
+	opacity: 0;
+}
+.example-1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+}
+.example:hover .example-1 {
+	opacity: 0;
+}
+.example:hover .example-2 {
+	opacity: 1;
+}
+

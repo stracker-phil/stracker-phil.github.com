@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Stracker-phil.github.com : Floating-Toolsfor CKEditor" />
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/stracker-phil/floating-tools/master/plugin.js"></script>
+	<link type="text/css" rel="stylesheet" href="ckeditor/skins/moono/editor.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Floating-Tools for CKEditor</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/stracker-phil">View on GitHub</a>
+
+          <h1 id="project_title">Floating-Tools</h1>
+          <h2 id="project_tagline"></h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+		<div class="example">
+			<img src="images/example-2.png" class="example-2" />
+			<img src="images/example-1.png" class="example-1" />
+		</div>
+
+        <h3>Description</h3>
+		<p>
+			Floating-Tools A smart addition to the CKEditor to give your users a small toolbar whenever they select a piece of text.<br>
+			All you do is select a word or a sentence and there is a toolbar displayed, right at your mouse-cursor! It is a very effective and intuitive way to make formating tasks easier.
+		</p>
+
+
+		<h3>Installation</h3>
+		<p>
+			Using this plugin is very easy! It just takes two simple steps:
+			<br>
+			<strong>1)</strong> First you need to download the plugin-code and save it to your <code>ckeditor/plugin</code> directory.
+			<br>
+			<strong>2)</strong> To fianlly use the plugin you only need to add a new setting to your existing CKEditor initialitation:
+			<pre><code>CKEDITOR.replace( 'editor'<em>, {extraPlugins: 'floating-tools'}</em>);</code></pre>
+		</p>
+
+		<h3>Configuration</h3>
+		<p>
+			When you simply follow the above steps to use the floating-tools plugin you will see the default toolbar as pictured in the image in the top. It contains the tools: Change font, Change size, Bold, Italic, Centre text, Outdent, Indent, Numbered list, Bullet list.
+		</p>
+		<p>
+			However, you can define your own toolbar configuration to display other buttons or even display two button-rows (or more...) The configuration is identical to the configuration-options of the native CKEditor toolbar.<br>
+			For example add the following configuration to create the displayed toolbar:
+			<pre><code>CKEDITOR.config.floatingtools = 'Basic';
+CKEDITOR.config.floatingtools_Basic =
+[
+	['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link']
+];</code></pre>
+		</p>
+
+
+		<h3>Additional notes</h3>
+		<p>
+			The floating toolbar actually uses the same setup and functions as the native CKEditor toolbar. So all the buttons that are available on the main toolbar can also be used inside the floating toolbar. There is no language, no images, no CSS that comes with the plugin - the floating toolbar uses same look-and-feel as your current CKEditor theme.
+		</p>
+		<p>
+			Also note, that the toolbar is only displayed when text is selected using the mouse, as the toolbar-buttons can be accessed only via mouse. On any keypress the toolbar is hidden again.
+		</p>
+
+		<h3>Example</h3>
+		<textarea name="editor">
+			<p>You can test the floating-toolbar in this editor.</p>
+			<p>All you need to do is select any text and see how the toolbar appears near your mouse.</p>
+			<p>Try to select text at different positions inside the editor and notice how the toolbar adjusts the position. For example when you select text in the top of the editor the toolbar will be displayed <b>below your mouse-cursor</b>, but when you select text further down, then the toolbar is displayed <b>above the mouse cursor</b>. Also see how the toolbar is positioned when you select text at the left or right side of the editor window!</p>
+		</textarea>
+		<script>
+	    CKEDITOR.replace( 'editor', {extraPlugins: 'floating-tools'} );
+		</script>
+		<p>
+			Download <a href="floating-tools-example.zip">this example</a> project as .zip archive!
+		</p>
+
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>
+
+        </p>
+      </footer>
+    </div>
+
+
+
+  </body>
+</html>
