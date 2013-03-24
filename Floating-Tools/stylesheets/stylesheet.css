@@ -169,9 +169,6 @@ pre, code {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-
-
-
 }
 
 pre {
@@ -261,6 +258,16 @@ td {
 form {
   background: #f2f2f2;
   padding: 20px;
+}
+
+footer form {
+}
+
+.donation {
+	display: inline;
+	position:absolute;
+	background: transparent;
+	padding: 0 0 0 8px;
 }
 
 img {
