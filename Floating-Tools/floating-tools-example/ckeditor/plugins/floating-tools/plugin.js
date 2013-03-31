@@ -5,10 +5,12 @@
  */
 (function() {
 
-  var floatingtools = function() {
+	var floatingtools = function() {
 		this.dom = null;  // the main toolbar-object
 		this.toolbars = [];
 		this.is_visible = false;
+
+		this.hide_on_blur = true; //!TODO: Make this an configuration option
 
 		this.toolbarsize = false;
 		this.editoroffset = false;
@@ -41,6 +43,7 @@
 				var output = [
 					// Did not find a nicer way to include the CSS required for the toolbar...
 					'<style>',
+					'.pos-relative {position:relative}',
 					'.cke_floatingtools{',
 						'position:absolute;',
 						'left:0;',
@@ -235,6 +238,16 @@
 
 
 				/**
+				 * On blur hide the toolbar (editor looses focus)
+				 */
+				editor.on('blur', function( e ) {
+					if (editor.floatingtools.hide_on_blur) {
+						hide_toolbar();
+					}
+				});
+
+
+				/**
 				 * Attach the mouse-over event to the toolbar.
 				 * When cursor is above the toolbar then set opacity to 1
 				 */
@@ -250,6 +263,9 @@
 				toolbar.on('mouseout', function( mouse_event ) {
 					unfocus_toolbar();
 				})
+
+				editor.container.addClass('pos-relative');
+				console.log(editor.container);
 			});
 
 
@@ -289,11 +305,7 @@
 			 */
 			editor.addCommand( 'hideFloatingTools', {
 				exec : function( editor ) {
-					if (false != editor.floatingtools.is_visible) {
-						toolbar = get_element();
-						toolbar.hide();
-						editor.floatingtools.is_visible = false;
-					}
+					hide_toolbar();
 				}
 			});
 
@@ -301,6 +313,15 @@
 			/**
 			 * ===== Behind the scenes. Getters, setters, calculation, etc.
 			 */
+
+
+			hide_toolbar = function() {
+				if (false != editor.floatingtools.is_visible) {
+					toolbar = get_element();
+					toolbar.hide();
+					editor.floatingtools.is_visible = false;
+				}
+			}
 
 
 			/**
@@ -343,9 +364,12 @@
 				if (! editor.floatingtools.editoroffset) {
 					var editor_id = editor.ui.spaceId( 'contents' );
 					var obj = CKEDITOR.document.getById( editor_id );
-					editor.floatingtools.editoroffset = calc_offset(obj);
-					editor.floatingtools.editoroffset.width = obj.$.offsetWidth;
-					editor.floatingtools.editoroffset.height = obj.$.offsetHeight;
+					editor.floatingtools.editoroffset = {
+						left:   obj.$.offsetLeft,
+						top:    obj.$.offsetTop,
+						width:  obj.$.offsetWidth,
+						height: obj.$.offsetHeight
+					};
 				}
 				return editor.floatingtools.editoroffset;
 			}
@@ -391,25 +415,6 @@
 					};
 				}
 				return editor.floatingtools.toolbarsize;
-			}
-
-
-			/**
-			 * Returns the absolute offset of the specified element on the page.
-			 */
-			calc_offset = function(obj) {
-				var pos_left = 0, pos_top = 0;
-
-				do {
-					if (typeof obj == 'undefined') break;
-					pos_left += obj.$.offsetLeft;
-					pos_top  += obj.$.offsetTop;
-				} while (obj = obj.$.parent);
-
-				return {
-					left: pos_left,
-					top: pos_top
-				};
 			}
 
 
